@@ -102,7 +102,6 @@ docker-compose down -v
 | `DB_USER` | Имя пользователя БД | `app_user` |
 | `DB_PASSWORD` | Пароль БД | `app_password` |
 | `DB_NAME` | Название базы данных | `app_db` |
-| `PORT` | Порт приложения | `8080` |
 
 ### Доступ к сервисам
 
@@ -110,7 +109,6 @@ docker-compose down -v
 
 - **RabbitMQ Management**: http://localhost:15672 (логин: `root`, пароль: `root`)
 - **PostgreSQL**: `localhost:5432`
-- **Lead Service**: `localhost:8080`
 
 ## Как это работает
 
@@ -136,7 +134,7 @@ docker-compose down -v
 
 5. **Подтверждение обработки**
    - При успешной обработке: `Ack` - сообщение удаляется из очереди
-   - При ошибке валидации: `Nack` (без requeue) - сообщение отбрасывается
+   - При ошибке валидации: `Nack` (с requeue) - сообщение возвращается в очередь
    - При ошибке БД: `Nack` (с requeue) - сообщение возвращается в очередь
 
 ### Обработка ошибок
